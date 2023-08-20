@@ -14,6 +14,10 @@
   import { AuthCheck } from "$lib/auth";
 </script>
 
+<svelte:head>
+  <title>Simple Todo</title>
+</svelte:head>
+
 <Modal />
 <Toast />
 
