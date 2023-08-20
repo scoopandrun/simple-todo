@@ -8,10 +8,27 @@
   // Finally, your application's global stylesheet (sometimes labeled 'app.css')
   import "../app.postcss";
 
-  import { AppShell, AppBar, Modal, Toast } from "@skeletonlabs/skeleton";
+  import {
+    AppShell,
+    AppBar,
+    Modal,
+    Toast,
+    storePopup,
+  } from "@skeletonlabs/skeleton";
+  import {
+    computePosition,
+    autoUpdate,
+    offset,
+    shift,
+    flip,
+    arrow,
+  } from "@floating-ui/dom";
 
   import { AppBarActions } from "$lib/components";
-  import { AuthCheck } from "$lib/auth";
+  import { AuthCheck, user } from "$lib/auth";
+
+  // Popup (utilisé pour la carte utilisateur)
+  storePopup.set({ computePosition, autoUpdate, offset, shift, flip, arrow });
 </script>
 
 <svelte:head>
@@ -33,7 +50,9 @@
       </a>
 
       <svelte:fragment slot="trail">
-        <AppBarActions />
+        <AuthCheck hideOnly>
+          <AppBarActions />
+        </AuthCheck>
       </svelte:fragment>
     </AppBar>
   </svelte:fragment>
