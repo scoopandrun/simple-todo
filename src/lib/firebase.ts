@@ -9,6 +9,10 @@ import {
 import { getAuth, connectAuthEmulator } from "firebase/auth";
 import { getFunctions, connectFunctionsEmulator } from "firebase/functions";
 import { getStorage, connectStorageEmulator } from "firebase/storage";
+import {
+  initializeAppCheck,
+  ReCaptchaEnterpriseProvider,
+} from "firebase/app-check";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -33,6 +37,12 @@ const auth = getAuth(app);
 const functions = getFunctions(app);
 const storage = getStorage(app);
 const analytics = getAnalytics(app);
+const appCheck = initializeAppCheck(app, {
+  provider: new ReCaptchaEnterpriseProvider(
+    "6Lf_Rb8nAAAAABWKq8MV3g5Rzo_b3QN0N_0N4S6U"
+  ),
+  isTokenAutoRefreshEnabled: true, // Set to true to allow auto-refresh.
+});
 
 if (["localhost", "127.0.0.1"].includes(window.location.hostname)) {
   connectFirestoreEmulator(firestore, "127.0.0.1", 8080);
