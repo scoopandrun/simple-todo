@@ -1,4 +1,7 @@
 <script lang="ts">
+  import { page } from "$app/stores";
+  import { goto } from "$app/navigation";
+
   import {
     modalStore,
     type ModalSettings,
@@ -17,9 +20,16 @@
     ...todo,
   };
 
-  function saveTodo() {
+  async function saveTodo() {
     todoStore.save(_todo);
     modalStore.close();
+    if ($page.url.pathname !== "/") {
+      try {
+        await goto("/");
+      } catch (error: unknown) {
+        console.error("Redirection après validation todo", error);
+      }
+    }
   }
 
   function deleteTodo() {

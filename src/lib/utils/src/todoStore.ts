@@ -12,7 +12,7 @@ import {
   orderBy,
 } from "firebase/firestore";
 
-import { db } from "$lib/firebase";
+import { firestore } from "$lib/firebase";
 
 import { mapify } from "$lib/utils";
 import { user as userStore } from "$lib/auth";
@@ -25,8 +25,9 @@ const { subscribe, set, update } = writable<Map<Todo["id"], Todo>>(
     userStore.subscribe((user) => {
       if (user) {
         const q = query(
-          collection(db, "todos"),
-          where("users", "array-contains", user.uid)
+          collection(firestore, "todos"),
+          where("users", "array-contains", user.uid),
+          orderBy("createdAt")
         );
 
         unsubscribe = onSnapshot(q, (snapshot) => {
@@ -77,7 +78,7 @@ function save(todo: Todo) {
     return todos;
   });
 
-  setDoc(doc(db, "todos", todo.id as string), todo);
+  setDoc(doc(firestore, "todos", todo.id as string), todo);
 }
 
 /**
@@ -95,7 +96,7 @@ function remove(id: Todo["id"]): void {
     return todos;
   });
 
-  deleteDoc(doc(db, "todos", id));
+  deleteDoc(doc(firestore, "todos", id));
 }
 
 /**

@@ -6,10 +6,11 @@
   import { auth } from "$lib/firebase";
   import { user } from "$lib/auth";
   import { AddTodoButton, ToogleFirebaseNetwork } from "$lib/components";
-  import { displayTodoForm } from "$lib/utils";
+  import { displayTodoForm, todoStore } from "$lib/utils";
 
   function signOut() {
     firebaseSignOut(auth);
+    todoStore.clearLocal();
   }
 
   $: userIconTitle = $user?.displayName

@@ -1,17 +1,17 @@
 <script lang="ts">
   import { SlideToggle } from "@skeletonlabs/skeleton";
   import { disableNetwork, enableNetwork } from "firebase/firestore";
-  import { db } from "$lib/firebase";
+  import { firestore } from "$lib/firebase";
 
   let checked = true;
 
   async function toggleNetwork() {
     if (checked) {
-      enableNetwork(db);
+      enableNetwork(firestore);
     }
 
     if (!checked) {
-      disableNetwork(db);
+      disableNetwork(firestore);
     }
   }
 </script>

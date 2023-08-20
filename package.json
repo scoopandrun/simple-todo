@@ -28,7 +28,7 @@
   },
   "type": "module",
   "dependencies": {
-    "firebase": "^10.1.0",
+    "firebase": "^9.9.0",
     "markdown-it": "^13.0.1",
     "uuid": "^9.0.0"
   }
