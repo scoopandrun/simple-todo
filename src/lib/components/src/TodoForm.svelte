@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { onMount, onDestroy } from "svelte";
   import { page } from "$app/stores";
   import { goto } from "$app/navigation";
 
@@ -8,7 +9,7 @@
     type ModalComponent,
   } from "@skeletonlabs/skeleton";
 
-  import { displayTodoForm, todoStore } from "$lib/utils";
+  import { displayTodoForm, todoStore, ongoingActivities } from "$lib/utils";
   import { ConfirmModal } from "$lib/components";
 
   export let parent: any;
@@ -57,10 +58,21 @@
     modalStore.close();
     modalStore.trigger(confirmModal);
   }
+
+  onMount(() => {
+    ongoingActivities.setActive("todoForm");
+  });
+
+  onDestroy(() => {
+    ongoingActivities.setInactive("todoForm");
+  });
 </script>
 
 <div class="card p-4 w-modal shadow-xl space-y-4">
-  <form class="border border-surface-500 p-4 space-y-4 rounded-container-token">
+  <form
+    class="border border-surface-500 p-4 space-y-4 rounded-container-token"
+    on:submit|preventDefault={saveTodo}
+  >
     <label class="label">
       <span>Titre</span>
       <input type="text" name="title" class="input" bind:value={_todo.title} />
@@ -109,14 +121,15 @@
 
   <footer class="modal-footer {parent.regionFooter}">
     {#if _todo.id}
-      <button class="btn variant-filled-error" on:click={deleteTodo}
-        >Supprimer</button
+      <button
+        class="btn variant-soft-error hover:variant-filled-error"
+        on:click={deleteTodo}>Supprimer</button
       >
     {/if}
-    <button class="btn {parent.buttonNeutral}" on:click={parent.onClose}
+    <button class="btn variant-soft-surface" on:click={parent.onClose}
       >Annuler</button
     >
-    <button class="btn {parent.buttonPositive}" on:click={saveTodo}
+    <button class="btn variant-filled-success" on:click={saveTodo}
       >Valider</button
     >
   </footer>

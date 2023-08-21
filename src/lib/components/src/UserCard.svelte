@@ -10,7 +10,7 @@
   const popupUserCard: PopupSettings = {
     event: "click",
     target: "userCard",
-    placement: "bottom",
+    placement: "left",
   };
 
   function signOut() {

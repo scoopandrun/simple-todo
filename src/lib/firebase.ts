@@ -37,18 +37,22 @@ const auth = getAuth(app);
 const functions = getFunctions(app);
 const storage = getStorage(app);
 const analytics = getAnalytics(app);
-const appCheck = initializeAppCheck(app, {
-  provider: new ReCaptchaEnterpriseProvider(
-    "6Lf_Rb8nAAAAABWKq8MV3g5Rzo_b3QN0N_0N4S6U"
-  ),
-  isTokenAutoRefreshEnabled: true, // Set to true to allow auto-refresh.
-});
 
 if (["localhost", "127.0.0.1"].includes(window.location.hostname)) {
   connectFirestoreEmulator(firestore, "127.0.0.1", 8080);
   connectAuthEmulator(auth, "http://127.0.0.1:9099");
   connectFunctionsEmulator(functions, "127.0.0.1", 5001);
   connectStorageEmulator(storage, "127.0.0.1", 9199);
+}
+
+if (!["localhost", "127.0.0.1"].includes(window.location.hostname)) {
+  // App Check (reCAPTCHA)
+  initializeAppCheck(app, {
+    provider: new ReCaptchaEnterpriseProvider(
+      "6Lf_Rb8nAAAAABWKq8MV3g5Rzo_b3QN0N_0N4S6U"
+    ),
+    isTokenAutoRefreshEnabled: true, // Set to true to allow auto-refresh.
+  });
 }
 
 export { app, firestore, auth, analytics };

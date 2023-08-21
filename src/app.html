@@ -2,16 +2,26 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" href="%sveltekit.assets%/favicon.png" />
     <meta name="viewport" content="width=device-width" />
     <meta name="robots" content="noindex" />
+    <title>Simple Todo</title>
+    <link rel="icon" href="%sveltekit.assets%/icons/favicon.png" />
+    <link rel="manifest" href="%sveltekit.assets%/manifest.webmanifest" />
+    <meta name="theme-color" content="#ec4899" />
     %sveltekit.head%
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
     />
+    <link
+      rel="preload"
+      href="%sveltekit.assets%/fonts/Inter-VariableFont_slnt,wght.ttf"
+      as="font"
+      type="font/ttf"
+      crossorigin
+    />
   </head>
-  <body data-sveltekit-preload-data="hover" class="p-2 md:p-8">
+  <body data-sveltekit-preload-data="hover" data-theme="modern">
     <div style="display: contents">%sveltekit.body%</div>
   </body>
 </html>

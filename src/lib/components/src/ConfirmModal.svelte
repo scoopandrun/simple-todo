@@ -17,8 +17,7 @@
   <slot />
 
   <footer class="modal-footer flex justify-end space-x-2">
-    <button class="btn {parent.buttonNeutral}" on:click={onCancel}
-      >Annuler</button
+    <button class="btn variant-soft-surface" on:click={onCancel}>Annuler</button
     >
     <button class="btn variant-filled-error" on:click={onConfirm}
       >Confirmer</button

@@ -1,0 +1,34 @@
+{
+  "name": "Simple Todo",
+  "short_name": "Simple Todo",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#ec4899",
+  "theme_color": "#ec4899",
+  "description": "Pense-bête simple.",
+  "icons": [
+    {
+      "src": "icons/favicon.png",
+      "type": "image/png",
+      "sizes": "192x192",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/favicon.svg",
+      "type": "image/svg+xml",
+      "sizes": "any",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/favicon_maskable.png",
+      "type": "image/png",
+      "sizes": "192x192",
+      "purpose": "maskable"
+    },
+    {
+      "src": "icons/splashscreen_logo.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ]
+}
