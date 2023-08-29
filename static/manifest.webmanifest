@@ -20,13 +20,13 @@
       "purpose": "any"
     },
     {
-      "src": "icons/favicon_maskable.png",
+      "src": "icons/maskable.png",
       "type": "image/png",
       "sizes": "192x192",
       "purpose": "maskable"
     },
     {
-      "src": "icons/splashscreen_logo.png",
+      "src": "icons/splashscreen.png",
       "type": "image/png",
       "sizes": "512x512"
     }
