@@ -1,12 +1,12 @@
 <script lang="ts">
-  import { modalStore } from "@skeletonlabs/skeleton";
+  import { getModalStore } from "@skeletonlabs/skeleton";
 
   export let parent: any;
 
   export let title = "";
   export let onCancel = () => parent.onClose();
   export let onConfirm: (e: MouseEvent | TouchEvent) => void = () =>
-    modalStore.close();
+    getModalStore().close();
 </script>
 
 <div class="card p-4 w-modal shadow-xl space-y-4">

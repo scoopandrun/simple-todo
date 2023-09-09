@@ -1,15 +1,19 @@
 <script lang="ts">
-  import { displayTodoForm } from "$lib/utils";
+  import { DisplayTodoForm } from "$lib/components";
 
   let classProps = "";
   export { classProps as class };
 </script>
 
-<button
-  type="button"
-  class="btn variant-filled-primary {classProps}"
-  title="Ajouter une tâche [N]"
-  on:click={() => displayTodoForm()}
->
-  <slot>Ajouter</slot></button
->
+<DisplayTodoForm>
+  <svelte:fragment let:displayTodoForm>
+    <button
+      type="button"
+      class="btn variant-filled-primary {classProps}"
+      title="Ajouter une tâche [N]"
+      on:click={() => displayTodoForm()}
+    >
+      <slot>Ajouter</slot></button
+    >
+  </svelte:fragment>
+</DisplayTodoForm>

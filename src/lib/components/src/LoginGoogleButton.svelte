@@ -2,7 +2,9 @@
   import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
   import type { FirebaseError } from "firebase/app";
   import { auth } from "$lib/firebase";
-  import { toastStore, type ToastSettings } from "@skeletonlabs/skeleton";
+  import { getToastStore, type ToastSettings } from "@skeletonlabs/skeleton";
+
+  const toastStore = getToastStore();
 
   async function signInWithGoogle() {
     try {

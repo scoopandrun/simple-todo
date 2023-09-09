@@ -4,12 +4,12 @@
   import { goto } from "$app/navigation";
 
   import {
-    modalStore,
+    getModalStore,
     type ModalSettings,
     type ModalComponent,
   } from "@skeletonlabs/skeleton";
 
-  import { displayTodoForm, todoStore, ongoingActivities } from "$lib/utils";
+  import { todoStore, ongoingActivities } from "$lib/utils";
   import { ConfirmModal } from "$lib/components";
 
   export let parent: any;
@@ -20,6 +20,8 @@
     ...todoStore.new(),
     ...todo,
   };
+
+  const modalStore = getModalStore();
 
   async function saveTodo() {
     todoStore.save(_todo);
@@ -44,7 +46,7 @@
         },
         onCancel: () => {
           modalStore.close();
-          displayTodoForm(_todo);
+          // displayTodoForm(_todo);
         },
       },
       slot: "<p>Confirmez-vous la suppression de la tâche ?</p>",
